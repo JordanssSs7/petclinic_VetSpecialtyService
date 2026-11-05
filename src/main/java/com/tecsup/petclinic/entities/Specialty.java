@@ -1,6 +1,7 @@
 package com.tecsup.petclinic.entities;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,7 @@ public class Specialty {
 
     @ManyToMany(mappedBy = "specialties", fetch = FetchType.LAZY)
     @Builder.Default
+    @JsonIgnore
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Vet> vets = new HashSet<>();

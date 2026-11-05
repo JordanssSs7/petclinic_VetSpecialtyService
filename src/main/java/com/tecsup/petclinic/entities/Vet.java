@@ -1,6 +1,7 @@
 package com.tecsup.petclinic.entities;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -46,6 +47,7 @@ public class Vet {
             inverseJoinColumns = @JoinColumn(name = "specialty_id")
     )
     @Builder.Default
+    @JsonIgnore
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<Specialty> specialties = new HashSet<>();

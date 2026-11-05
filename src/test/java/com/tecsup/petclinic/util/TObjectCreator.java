@@ -2,6 +2,8 @@ package com.tecsup.petclinic.util;
 
 import com.tecsup.petclinic.dtos.PetDTO;
 import com.tecsup.petclinic.entities.Pet;
+import com.tecsup.petclinic.entities.Specialty;
+import com.tecsup.petclinic.entities.Vet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,5 +81,23 @@ public class TObjectCreator {
 		pets.add(new Pet(12,"Lucky",2,10, null));
 		pets.add(new Pet(13,"Sly",1,10, null));
 		return pets;
+	}
+
+	// ===== VetSpecialty (Grupo 5 - Integrante B) =====
+
+	/** Especialidades del vet 3 segun data.sql: surgery y dentistry. */
+	public static List<Specialty> getSpecialtiesForVet3() {
+		List<Specialty> list = new ArrayList<Specialty>();
+		list.add(Specialty.builder().id(2).name("surgery").office("Maryland").hOpen(8).hClose(12).build());
+		list.add(Specialty.builder().id(3).name("dentistry").office("Terranova").hOpen(9).hClose(19).build());
+		return list;
+	}
+
+	/** Vets con la especialidad 1 (radiology) segun data.sql: vets 2 y 5. */
+	public static List<Vet> getVetsForSpecialty1() {
+		List<Vet> list = new ArrayList<Vet>();
+		list.add(Vet.builder().id(2).firstName("Helen").lastName("Leary").build());
+		list.add(Vet.builder().id(5).firstName("Henry").lastName("Stevens").build());
+		return list;
 	}
 }
