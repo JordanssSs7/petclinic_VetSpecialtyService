@@ -5,11 +5,11 @@ import com.tecsup.petclinic.entities.VetSpecialtyId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- * Acceso a la tabla vet_specialties (save, delete, findById, existsById...).
- */
+import java.util.List;
+
 @Repository
 public interface VetSpecialtyRepository
-	extends JpaRepository<VetSpecialty, VetSpecialtyId> {
+        extends JpaRepository<VetSpecialty, VetSpecialtyId> {
 
+    List<VetSpecialty> findByVetId(int vetId);
 }

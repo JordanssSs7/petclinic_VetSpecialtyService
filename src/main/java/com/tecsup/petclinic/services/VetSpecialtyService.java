@@ -34,4 +34,9 @@ public interface VetSpecialtyService {
 	 */
 	List<Vet> findVetsBySpecialty(Integer specialtyId);
 
+    /**
+     * Marca una especialidad asignada como principal del veterinario.
+     */
+    VetSpecialty setPrimarySpecialty(int vetId, int specialtyId)
+            throws VetSpecialtyNotFoundException;
 }

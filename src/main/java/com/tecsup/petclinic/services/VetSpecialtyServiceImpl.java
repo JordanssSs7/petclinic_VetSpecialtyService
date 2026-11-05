@@ -73,4 +73,31 @@ public class VetSpecialtyServiceImpl implements VetSpecialtyService {
 		return vetRepository.findBySpecialtyId(specialtyId);
 	}
 
+    @Override
+    @Transactional
+    public VetSpecialty setPrimarySpecialty(int vetId, int specialtyId)
+            throws VetSpecialtyNotFoundException {
+
+        VetSpecialtyId id = new VetSpecialtyId(vetId, specialtyId);
+
+        // Primero comprueba que la especialidad esté asignada.
+        VetSpecialty selected = vetSpecialtyRepository.findById(id)
+                .orElseThrow(() -> new VetSpecialtyNotFoundException(
+                        "Vet " + vetId + " does not have specialty " + specialtyId));
+
+        // Quita la marca principal de las asignaciones del veterinario.
+        List<VetSpecialty> assignments =
+                vetSpecialtyRepository.findByVetId(vetId);
+
+        for (VetSpecialty assignment : assignments) {
+            assignment.setPrimary(false);
+        }
+
+        vetSpecialtyRepository.saveAll(assignments);
+
+        // Marca como principal la especialidad elegida.
+        selected.setPrimary(true);
+
+        return vetSpecialtyRepository.save(selected);
+    }
 }
